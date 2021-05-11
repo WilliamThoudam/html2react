@@ -100,7 +100,7 @@ const Header = () => {
               <div className='col-xl-8 col-lg-10'>
                 <div className='header-content text-center'>
                   <h3 className='header-title'>
-                    Handcrafted Landing Page for Startups and SaaS Businesses
+                    Handcrafteds Landing Page for Startups and SaaS Businesses
                   </h3>
                   <p className='text'>
                     A simple, customizable, and, beautiful SaaS business focused
