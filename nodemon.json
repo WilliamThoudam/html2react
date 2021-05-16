@@ -2,6 +2,8 @@
     "env": {
         "MONGO_USER": "game",
         "MONGO_PASSWORD": "welcome12@game",
-        "MONGO_DB": "events-react-dev"
+        "MONGO_DB": "events-react-dev",
+        "NODE_ENV": "development",
+        "PORT": 8000
     }
 }

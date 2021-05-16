@@ -1,6 +1,4 @@
 const express = require('express');
-const connectDB = require('./config/db');
-const bodyParser = require('body-parser');
 const graphqlHttp = require('express-graphql');
 const mongoose = require('mongoose');
 
@@ -12,7 +10,7 @@ require('dotenv/config');
 
 const app = express();
 
-app.use(bodyParser.json());
+app.use(express.json());
 
 app.use((req, res, next) => {
   res.setHeader('Access-Control-Allow-Origin', '*');
@@ -36,28 +34,27 @@ app.use(
 );
 
 // Connect Database
-connectDB()
-  // mongoose
-  //   .connect(
-  //     `mongodb+srv://${process.env.MONGO_USER}:${process.env.MONGO_PASSWORD}.fqiii.mongodb.net/${process.env.MONGO_DB}?retryWrites=true&w=majority`,
-  //     {
-  //       useNewUrlParser: true,
-  //       useCreateIndex: true,
-  //       useFindAndModify: false,
-  //       //useUnifiedTopology: true,
-  //     }
-  //   )
+mongoose
+  .connect(
+    `mongodb+srv://${process.env.MONGO_USER}:${process.env.MONGO_PASSWORD}.fqiii.mongodb.net/${process.env.MONGO_DB}?retryWrites=true&w=majority`,
+    {
+      useNewUrlParser: true,
+      useCreateIndex: true,
+      useFindAndModify: false,
+      useUnifiedTopology: true,
+    }
+  )
   .then(() => {
+    console.log('MongoDB connected');
     // Serve static assets in production
     if (process.env.NODE_ENV === 'production') {
       // Set static folder
       app.use(express.static('client/build'));
-
       app.get('*', (req, res) => {
         res.sendFile(path.resolve(__dirname, 'client', 'build', 'index.html'));
       });
     }
-    const PORT = process.env.PORT || 8000;
+    const PORT = process.env.PORT;
     app.listen(PORT, () => console.log(`Server started on port ${PORT}`));
   })
   .catch((err) => {
