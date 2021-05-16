@@ -5,18 +5,24 @@ const Schema = mongoose.Schema;
 const userSchema = new Schema({
   email: {
     type: String,
-    required: true
+    required: true,
   },
   password: {
     type: String,
-    required: true
+    required: true,
   },
   createdEvents: [
     {
       type: Schema.Types.ObjectId,
-      ref: 'Event'
-    }
-  ]
+      ref: 'Event',
+    },
+  ],
+  createdPosts: [
+    {
+      type: Schema.Types.ObjectId,
+      ref: 'Post',
+    },
+  ],
 });
 
 module.exports = mongoose.model('User', userSchema);

@@ -27,17 +27,13 @@ type Post {
   title: String!
   createdAt: String!
   updatedAt: String!
+  creator: User!
 }
 
 type AuthData {
   userId: ID!
   token: String!
   tokenExpiration: Int!
-}
-
-type Post {
-  _id: ID!
-  title: String!
 }
 
 input EventInput {
@@ -52,6 +48,10 @@ input UserInput {
   password: String!
 }
 
+input PostInput {
+  title: String!
+}
+
 type RootQuery {
   events: [Event!]!
   bookings: [Booking!]!
@@ -64,6 +64,7 @@ type RootMutation {
   createUser(userInput: UserInput): User
   bookEvent(eventId: ID!): Booking!
   cancelBooking(bookingId: ID!): Event!
+  createPost(postInput: PostInput): Post
 }
 
 schema {
