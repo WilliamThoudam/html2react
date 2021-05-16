@@ -1,4 +1,7 @@
-`type Booking {
+const { buildSchema } = require('graphql');
+
+module.exports = buildSchema(`
+type Booking {
     _id: ID!
     event: Event!
     user: User!
@@ -57,4 +60,4 @@ schema {
     query: RootQuery
     mutation: RootMutation
 }
-`;
+`);
