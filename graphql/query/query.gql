@@ -20,6 +20,7 @@ type User {
   email: String!
   password: String
   createdEvents: [Event!]
+  createdPosts: [Post!]
 }
 
 type Post {
