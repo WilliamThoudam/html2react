@@ -66,6 +66,7 @@ const user = async (userId) => {
       _id: user.id,
       password: null,
       createdEvents: () => eventLoader.loadMany(user._doc.createdEvents),
+      createdPosts: () => postLoader.loadMany(user._doc.createdPosts),
     };
   } catch (err) {
     throw err;
